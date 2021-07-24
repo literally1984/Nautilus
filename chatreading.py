@@ -16,7 +16,7 @@ def cls():
     
 def startmessagewrite():
     directory = os.getcwd()
-    cmd = 'start cmd /k "cd ' + directory + '\\Downloads & python chatwriting.py"'
+    cmd = 'start cmd /k "cd ' + directory + '\\Downloads & py chatwriting.py"'
     os.system(cmd)
 
 gauth = GoogleAuth()
