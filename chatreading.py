@@ -1,7 +1,7 @@
 import os
 
 def pydrive2install():
-    os.system("start cmd /c pip install pydrive2")
+    os.system("start cmd /c py -m pip install PyDrive2")
 
 pydrive2install()
 
