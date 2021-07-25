@@ -27,11 +27,9 @@ drive = GoogleDrive(gauth)
 cls()
 
 userenter = input("Enter your username: ")
-time.sleep(1)
 cls()
 
 while True:
-   time.sleep(1)
    newmessage = input("Enter your message: \n")
    cls()
    newmessage = userenter + ": " + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
