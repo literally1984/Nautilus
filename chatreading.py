@@ -1,23 +1,34 @@
-import os
-
-def pydrive2install():
-    os.system("start cmd /c py -m pip install PyDrive2")
-
-pydrive2install()
-
-from pydrive2.auth import GoogleAuth
-from pydrive2.drive import GoogleDrive
-
 import time
+import os
+import platform
+import sys
+
+try:
+    from pydrive2.auth import GoogleAuth
+    from pydrive2.drive import GoogleDrive
+except ModuleNotFoundError:
+    print("Please run 'setup.py' first!")
+    sys.exit()
+
+if platform.system() == "Darwin":
+    from applescript import tell
 
 def cls():
     print("\f")
     os.system('cls' if os.name=='nt' else 'clear')
-    
+
 def startmessagewrite():
-    directory = os.getcwd()
-    cmd = 'start cmd /k "cd ' + directory + '\\Downloads & py chatwriting.py"'
-    os.system(cmd)
+    if platform.system() == "Windows":
+        directory = os.getcwd()
+        cmd = 'start cmd /k "cd ' + directory + '\\Downloads & ' + sys.executable + ' chatwriting.py"'
+        os.system(cmd)
+    elif platform.system() == "Darwin":
+        directory = os.getcwd()
+        cmd = "cd " + directory + "/Downloads; " + sys.executable + " chatwriting.py"
+        tell.app('Terminal', 'do script "' + cmd + '"', background = True) 
+    else:
+        print("Unfortunately, Nautilus is not supported on Linux and other systems yet. :/")
+        sys.exit()
 
 gauth = GoogleAuth()
 
@@ -49,4 +60,4 @@ while True:
     displaychat = open("chatlogsforread.txt", "r")
     print(displaychat.read())
     displaychat.close()
-    filelastmodified = chatfileforread["modifiedDate"]         
+    filelastmodified = chatfileforread["modifiedDate"]
