@@ -19,12 +19,10 @@ def cls():
 
 def startmessagewrite():
     if platform.system() == "Windows":
-        directory = os.getcwd()
-        cmd = 'start cmd /k "cd ' + directory + '\\Downloads & ' + sys.executable + ' chatwriting.py"'
+        cmd = 'start cmd /k "' + sys.executable + ' chatwriting.py"'
         os.system(cmd)
     elif platform.system() == "Darwin":
-        directory = os.getcwd()
-        cmd = "cd " + directory + "/Downloads; " + sys.executable + " chatwriting.py"
+        cmd = sys.executable + " chatwriting.py"
         tell.app('Terminal', 'do script "' + cmd + '"', background = True) 
     else:
         print("Unfortunately, Nautilus is not supported on Linux and other systems yet. :/")
