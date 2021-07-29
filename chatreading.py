@@ -23,7 +23,7 @@ def startmessagewrite():
         os.system(cmd)
     elif platform.system() == "Darwin":
         currentdir = os.getcwd()
-        cmd = "cd " + currentdir + "/Downloads " + sys.executable + " chatwriting.py"
+        cmd = "cd " + currentdir + "; " + sys.executable + " chatwriting.py"
         tell.app('Terminal', 'do script "' + cmd + '"', background = True) 
     else:
         print("Unfortunately, Nautilus is not supported on Linux and other systems yet. :/")
