@@ -2,16 +2,17 @@ import platform
 import subprocess
 import sys
 
-def pydrive2install():
+def pydrive2andemojiinstall():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "PyDrive2"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "emojis"])
 
 def applescriptinstall():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "applescript"])
 
 if platform.system() == "Windows":
-    pydrive2install()
+    pydrive2andemojiinstall()
 elif platform.system() == "Darwin":
-    pydrive2install()
+    pydrive2andemojiinstall()
     applescriptinstall()
 else:
     print("Unfortunately, Nautilus is not supported on Linux and other systems yet. :/")
