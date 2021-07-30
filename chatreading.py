@@ -6,6 +6,7 @@ import sys
 try:
     from pydrive2.auth import GoogleAuth
     from pydrive2.drive import GoogleDrive
+    import emojis
 except ModuleNotFoundError:
     print("Please run 'setup.py' first!")
     sys.exit()
@@ -57,6 +58,7 @@ while True:
         cls()
     chatfileforread.GetContentFile("chatlogsforread.txt")
     displaychat = open("chatlogsforread.txt", "r")
-    print(displaychat.read())
+    displayingchat = displaychat.read()
+    print(emojis.encode(displayingchat))
     displaychat.close()
     filelastmodified = chatfileforread["modifiedDate"]

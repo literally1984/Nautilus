@@ -1,9 +1,13 @@
-from pydrive2.auth import GoogleAuth
-from pydrive2.drive import GoogleDrive
-
-import time
 from time import gmtime, strftime
 import os
+import sys
+
+try:
+    from pydrive2.auth import GoogleAuth
+    from pydrive2.drive import GoogleDrive
+except ModuleNotFoundError:
+    print("Please run 'setup.py' first! Then, run 'chatreading.py'.")
+    sys.exit()
 
 def cls():
     print("\f")
