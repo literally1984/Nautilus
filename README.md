@@ -9,4 +9,4 @@ To start using Nautilus, run 'setup.py' and follow the instructions it provides.
  Although an official list of what emojis are supported in Nautilus and their shortcodes will be coming soon, for now you can use [this website](https://www.webfx.com/tools/emoji-cheat-sheet/).
 
 
-*Previously, it was encouraged to run it with the regular Command Prompt. However, with the addition of emoji support in Allonautilus Scrobiculatus 3.1.0, Command Prompt is now useless because it cannot display Unicode, or at least emojis.
+*Previously, it was encouraged to run it with the regular Command Prompt. However, with the addition of emoji support in Allonautilus Scrobiculatus 2.1.0, Command Prompt is now useless because it cannot display Unicode, or at least emojis.
