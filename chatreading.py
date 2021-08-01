@@ -2,6 +2,7 @@ import time
 import os
 import platform
 import sys
+import shutil
 
 try:
     from pydrive2.auth import GoogleAuth
@@ -20,8 +21,12 @@ def cls():
 
 def startmessagewrite():
     if platform.system() == "Windows":
-        cmd = 'start cmd /k "' + sys.executable + ' chatwriting.py"'
-        os.system(cmd)
+        pythonrunner = sys.executable + ' chatwriting.py"'
+        pythonrunnerwt = 'wt new-tab -p "Command Prompt" -d "%cd%" cmd /k "' + pythonrunner
+        if shutil.which("wt.exe") is None:
+            os.system("start cmd /k " + pythonrunner)
+        else:
+            os.system("start cmd /c " + pythonrunnerwt)
     elif platform.system() == "Darwin":
         currentdir = os.getcwd()
         cmd = "cd " + currentdir + "; " + sys.executable + " chatwriting.py"
