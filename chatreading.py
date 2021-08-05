@@ -59,7 +59,7 @@ startmessagewrite()
 
 filelastmodified = 0
 while True:
-    chatfileforread = drive.CreateFile({"id": "1ksTiAwp1a5rgKfSEv54l7nZM0vD5U46A"})
+    chatfileforread = drive.CreateFile({"id": "1bJE_6jXuW58rHov8SbfU55mhP8RDpfZ0"})
     if chatfileforread["modifiedDate"] == filelastmodified:
         time.sleep(1)
         continue

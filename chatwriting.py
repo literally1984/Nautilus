@@ -37,7 +37,7 @@ while True:
    newmessage = input("Enter your message: \n")
    cls()
    newmessage = userenter + ": " + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
-   chatfileforwrite = drive.CreateFile({"id": "1ksTiAwp1a5rgKfSEv54l7nZM0vD5U46A"})
+   chatfileforwrite = drive.CreateFile({"id": "1bJE_6jXuW58rHov8SbfU55mhP8RDpfZ0"})
    chatfileforwrite.GetContentFile("chatlogsforwrite.txt")
    modifyfile = open("chatlogsforwrite.txt", "a")
    modifyfile.write(newmessage)
