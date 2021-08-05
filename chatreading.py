@@ -13,8 +13,12 @@ except ModuleNotFoundError:
     sys.exit()
 
 if platform.system() == "Darwin":
-    from applescript import tell
-
+    try:
+        from applescript import tell
+    except ModuleNotFoundError:
+        print("Please run 'setup.py' first!")
+        sys.exit()
+    
 def cls():
     print("\f")
     os.system('cls' if os.name=='nt' else 'clear')
@@ -24,7 +28,7 @@ def startmessagewrite():
         pythonrunner = sys.executable + ' chatwriting.py"'
         pythonrunnerwt = 'wt new-tab -p "Command Prompt" -d "%cd%" cmd /k "' + pythonrunner
         if shutil.which("wt.exe") is None:
-            os.system("start cmd /k " + pythonrunner)
+            os.system('start cmd /k "' + pythonrunner)
         else:
             os.system("start cmd /c " + pythonrunnerwt)
     elif platform.system() == "Darwin":
