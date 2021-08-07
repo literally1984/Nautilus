@@ -5,8 +5,12 @@ import sys
 try:
     from pydrive2.auth import GoogleAuth
     from pydrive2.drive import GoogleDrive
+    import climage
+    from PIL import UnidentifiedImageError
+    from ansimarkup import AnsiMarkup
+    from ansimarkup.markup import MismatchedTag
 except ModuleNotFoundError:
-    print("Please run 'setup.py' first! Then, run 'chatreading.py'.")
+    print("Please run 'setup.py' first! Also, you're not supposed to run this script anyway!")
     sys.exit()
 
 def cls():
@@ -36,16 +40,61 @@ cls()
 while True:
    newmessage = input("Enter your message: \n")
    cls()
-   newmessage = userenter + ": " + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
-   chatfileforwrite = drive.CreateFile({"id": "1oniDATz7bqQcqK5wrzlco6qFYedtQFM0"})
-   chatfileforwrite.GetContentFile("chatlogsforwrite.txt")
-   modifyfile = open("chatlogsforwrite.txt", "a")
-   modifyfile.write(newmessage)
-   modifyfile.write("\n")
-   modifyfile.flush()
-   modifyfile.close()
-   modifyfile = open("chatlogsforwrite.txt", "r")
-   logsfordrive = modifyfile.read()
-   modifyfile.close()
-   chatfileforwrite.SetContentString(logsfordrive)
+   replyornot = False
+   imgornot = False
+   if len(newmessage) > 2 and newmessage[0] and newmessage[-1] == "," and "|" in newmessage:
+       pos = newmessage.index("|")
+       replymessage = newmessage[1:pos]
+       reply = newmessage[pos+1:-1]
+       if len(reply) > 2 and reply[0] and reply[-1] == "`":
+           if "|" in reply:
+               pos = reply.index("|")
+               caption = reply[pos+1:-1]
+               filepath = reply[1:pos]
+           else:
+               filepath = reply[1:-1]
+           try:
+               output = climage.convert(filepath, is_unicode=True)
+               if "|" in reply:
+                   reply = output + caption
+               else:
+                   reply = output
+           except (FileNotFoundError, UnidentifiedImageError, PermissionError, OSError):
+               pass
+       newmessage = "	|" + replymessage
+       newmessage = newmessage + "\n" + "	|" + "\n" + reply
+       replyornot = True
+   if len(newmessage) > 2 and newmessage[0] and newmessage[-1] == "`":
+       if "|" in newmessage:
+           pos = newmessage.index("|")
+           caption = newmessage[pos+1:-1]
+           filepath = newmessage[1:pos]
+       else:
+           filepath = newmessage[1:-1]
+       try:
+           output = climage.convert(filepath, is_unicode=True)
+           if "|" in newmessage:
+               newmessage = output + caption
+           else:
+               newmessage = output
+           imgornot = True
+       except (FileNotFoundError, UnidentifiedImageError, PermissionError, OSError):
+           pass
+   markup = AnsiMarkup(strict=True)
+   try:
+       markup.parse(newmessage)
+   except MismatchedTag:
+       newmessage = markup.strip(newmessage)
+   if replyornot == True or imgornot == True:
+       newmessage = userenter + ": \n" + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
+   else:
+       newmessage = userenter + ": " + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
+   chatfileforwrite = drive.CreateFile({"id": "1H1dmPXahBo1BcKk4djuABDom8q2ys-E4"})
+   modifyfile = chatfileforwrite.GetContentString(mimetype = "text/plain")
+   modifyfile += newmessage
+   if imgornot == True:
+       modifyfile += "\n\n"
+   else:
+       modifyfile += "\n"
+   chatfileforwrite.SetContentString(modifyfile)
    chatfileforwrite.Upload()

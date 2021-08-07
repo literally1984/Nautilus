@@ -7,6 +7,7 @@ import shutil
 try:
     from pydrive2.auth import GoogleAuth
     from pydrive2.drive import GoogleDrive
+    from ansimarkup import parse
     import emojis
 except ModuleNotFoundError:
     print("Please run 'setup.py' first!")
@@ -42,12 +43,8 @@ def startmessagewrite():
 gauth = GoogleAuth()
 
 gauth.LoadCredentialsFile("mycreds.txt")
-if gauth.credentials is None:
-    gauth.GetFlow()
-    gauth.flow.params.update({'access_type': 'offline'})
-    gauth.flow.params.update({'approval_prompt': 'force'})
-    gauth.LocalWebserverAuth("localhost",[8080])
-elif gauth.access_token_expired:
+
+if gauth.access_token_expired:
     gauth.Refresh()
 else:
     gauth.Authorize()
@@ -59,15 +56,13 @@ startmessagewrite()
 
 filelastmodified = 0
 while True:
-    chatfileforread = drive.CreateFile({"id": "1oniDATz7bqQcqK5wrzlco6qFYedtQFM0"})
+    chatfileforread = drive.CreateFile({"id": "1H1dmPXahBo1BcKk4djuABDom8q2ys-E4"})
     if chatfileforread["modifiedDate"] == filelastmodified:
-        time.sleep(1)
+        time.sleep(0.5)
         continue
     else:
         cls()
-    chatfileforread.GetContentFile("chatlogsforread.txt")
-    displaychat = open("chatlogsforread.txt", "r")
-    displayingchat = displaychat.read()
-    print(emojis.encode(displayingchat))
-    displaychat.close()
+    displayingchat = chatfileforread.GetContentString(mimetype = "text/plain")
+    displayingchat = emojis.encode(displayingchat)
+    print(parse(displayingchat))
     filelastmodified = chatfileforread["modifiedDate"]
