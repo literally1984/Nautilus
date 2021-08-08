@@ -62,7 +62,10 @@ while True:
         continue
     else:
         cls()
-    displayingchat = chatfileforread.GetContentString(mimetype = "text/plain")
-    displayingchat = emojis.encode(displayingchat)
-    print(parse(displayingchat))
+    chatfileforread.GetContentFile("chatlogsforread.txt")
+    displayingchat = open("chatlogsforread.txt", "r")
+    getlogs = displayingchat.read()
+    displayingchat.close()
+    getlogs = emojis.encode(getlogs)
+    print(parse(getlogs))
     filelastmodified = chatfileforread["modifiedDate"]

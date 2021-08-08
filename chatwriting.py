@@ -72,7 +72,7 @@ while True:
        else:
            filepath = newmessage[1:-1]
        try:
-           output = climage.convert(filepath, is_unicode=True)
+           output = climage.convert(filepath, is_unicode=False)
            if "|" in newmessage:
                newmessage = output + caption
            else:
@@ -90,11 +90,15 @@ while True:
    else:
        newmessage = userenter + ": " + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
    chatfileforwrite = drive.CreateFile({"id": "1H1dmPXahBo1BcKk4djuABDom8q2ys-E4"})
-   modifyfile = chatfileforwrite.GetContentString(mimetype = "text/plain")
-   modifyfile += newmessage
+   chatfileforwrite.GetContentFile("chatlogsforwrite.txt")
+   modifyfile = open("chatlogsforwrite.txt", "a")
+   modifyfile.write(newmessage)
    if imgornot == True:
-       modifyfile += "\n\n"
+       modifyfile.write("\n\n")
    else:
-       modifyfile += "\n"
-   chatfileforwrite.SetContentString(modifyfile)
+       modifyfile.write("\n")
+   modifyfile.close()
+   modifyfile = open("chatlogsforwrite.txt", "r")
+   logs = modifyfile.read()
+   chatfileforwrite.SetContentString(logs)
    chatfileforwrite.Upload()
