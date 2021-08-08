@@ -9,6 +9,7 @@ try:
     from PIL import UnidentifiedImageError
     from ansimarkup import AnsiMarkup
     from ansimarkup.markup import MismatchedTag
+    from ansimarkup.markup import UnbalancedTag
 except ModuleNotFoundError:
     print("Please run 'setup.py' first! Also, you're not supposed to run this script anyway!")
     sys.exit()
@@ -19,12 +20,7 @@ def cls():
 
 gauth = GoogleAuth()
 gauth.LoadCredentialsFile("mycreds.txt")
-if gauth.credentials is None:
-  gauth.GetFlow()
-  gauth.flow.params.update({'access_type': 'offline'})
-  gauth.flow.params.update({'approval_prompt': 'force'})
-  gauth.LocalWebserverAuth("localhost",[8080])
-elif gauth.access_token_expired:
+if gauth.access_token_expired:
   gauth.Refresh()
 else:
   gauth.Authorize()
@@ -83,7 +79,7 @@ while True:
    markup = AnsiMarkup(strict=True)
    try:
        markup.parse(newmessage)
-   except MismatchedTag:
+   except (MismatchedTag, UnbalancedTag):
        newmessage = markup.strip(newmessage)
    if replyornot == True or imgornot == True:
        newmessage = userenter + ": \n" + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
