@@ -50,7 +50,7 @@ while True:
            else:
                filepath = reply[1:-1]
            try:
-               output = climage.convert(filepath, is_unicode=True)
+               output = climage.convert(filepath, is_unicode=False)
                if "|" in reply:
                    reply = output + caption
                else:
