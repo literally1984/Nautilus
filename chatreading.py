@@ -62,7 +62,7 @@ while True:
     else:
         cls()
     chatlogs.GetContentFile("chatlogsforread.txt")
-    displayingchat = open("chatlogsforread.txt", "r")
+    displayingchat = open("chatlogsforread.txt", "r", encoding = 'utf-8')
     getlogs = displayingchat.read()
     displayingchat.close()
     getlogs = emojis.encode(getlogs)

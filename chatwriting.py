@@ -88,14 +88,14 @@ while True:
        newmessage = userenter + ": " + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
    chatlogs = drive.CreateFile({"id": "1H1dmPXahBo1BcKk4djuABDom8q2ys-E4"})
    chatlogs.GetContentFile("chatlogsforwrite.txt")
-   modifyfile = open("chatlogsforwrite.txt", "a")
+   modifyfile = open("chatlogsforwrite.txt", "a", encoding = 'utf-8')
    modifyfile.write(newmessage)
    if imgornot == True:
        modifyfile.write("\n\n")
    else:
        modifyfile.write("\n")
    modifyfile.close()
-   modifyfile = open("chatlogsforwrite.txt", "r")
+   modifyfile = open("chatlogsforwrite.txt", "r", encoding = 'utf-8')
    logs = modifyfile.read()
    modifyfile.close()
    chatlogs.SetContentString(logs)
