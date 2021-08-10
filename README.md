@@ -3,14 +3,15 @@ Serverless console based chat program made with PyDrive2.
 # How To Use:
 After installing the program files from GitHub, they can be put anywhere. Just make sure to keep all files in one place.
  
-To start using Nautilus, run 'setup.py' and follow the instructions it provides. While you can run it with an IDE or something similar, I encourage you to run it with [Windows Terminal](https://github.com/microsoft/terminal#installing-and-running-windows-terminal)* (Windows) or Terminal (Mac). See [this link](https://www.wikihow.com/Open-a-Python-File#Using-Python-at-the-Command-Line) for help on running a Python file in Windows Terminal or Terminal.
+To start using Nautilus, run 'setup.py' and follow the instructions it provides. While you can run it with an IDE or something similar, I encourage you to run it with [Windows Terminal](https://github.com/microsoft/terminal#installing-and-running-windows-terminal)* (Windows) or [iTerm2](https://iterm2.com/)** (Mac). See [this link](https://www.wikihow.com/Open-a-Python-File#Using-Python-at-the-Command-Line) for help on running a Python file in Windows Terminal or iTerm2.
+
+*Previously, it was encouraged to run Nautilus with the regular Command Prompt. However, with the addition of emoji support in release 2.1.0, Command Prompt is now useless because it cannot display Unicode, or at least emojis.
+
+**Previously, it was encouraged to run Nautilus with the regular Terminal. However, with the addition of the 'images' feature, Terminal simply does not work because the 'images' feature needs truecolor support.
 
 # Emojis
- Although an official list of what emojis are supported in Nautilus and their shortcodes will be coming soon, for now you can use [this website](https://www.webfx.com/tools/emoji-cheat-sheet/).
-
-
-*Previously, it was encouraged to run it with the regular Command Prompt. However, with the addition of emoji support in release 2.1.0, Command Prompt is now useless because it cannot display Unicode, or at least emojis.
-
+See [this file](https://github.com/literally1984/Nautilus/blob/main/emojis.md) for a complete list of all emojis supported by Nautilus.
+ 
 # Markup
 Wanna spice up your messages with colors? Or make your words have a bigger impact by bolding them? Lucky for you, Nautilus supports just that!
 To use colors in your messages you can do something like:
@@ -64,5 +65,4 @@ To form a reply, make your message look like the following:
 
 If you were to type out the message above, it would render as:
 
-<img width="500" alt="reply" src="https://user-images.githubusercontent.com/85363779/128644608-c4733e6c-41b6-4ec5-b712-ab6de60cc695.png">
-
+<img width="400" alt="reply" src="https://user-images.githubusercontent.com/85363779/128943235-1445b2d2-6ba8-495b-8618-c192974c2de6.png">
