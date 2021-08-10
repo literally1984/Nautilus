@@ -2,7 +2,7 @@ import platform
 import subprocess
 import sys
 
-def pydrive2climageandrichinstall():
+def moduleinstall():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "PyDrive2"])
     subprocess.check_call([sys.executable, "-m", "pip", "install", "ansimarkup"])
     subprocess.check_call([sys.executable, "-m", "pip", "install", "climage"])
@@ -12,9 +12,9 @@ def applescriptinstall():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "applescript"])
 
 if platform.system() == "Windows":
-    pydrive2climageandrichinstall()
+    moduleinstall()
 elif platform.system() == "Darwin":
-    pydrive2climageandrichinstall()
+    moduleinstall()
     applescriptinstall()
 else:
     print("Unfortunately, Nautilus is not supported on Linux and other systems yet. :/")

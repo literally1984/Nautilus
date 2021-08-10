@@ -41,7 +41,6 @@ def startmessagewrite():
         sys.exit()
 
 gauth = GoogleAuth()
-
 gauth.LoadCredentialsFile("mycreds.txt")
 
 if gauth.access_token_expired:
@@ -56,16 +55,16 @@ startmessagewrite()
 
 filelastmodified = 0
 while True:
-    chatfileforread = drive.CreateFile({"id": "1H1dmPXahBo1BcKk4djuABDom8q2ys-E4"})
-    if chatfileforread["modifiedDate"] == filelastmodified:
+    chatlogs = drive.CreateFile({"id": "1H1dmPXahBo1BcKk4djuABDom8q2ys-E4"})
+    if chatlogs["modifiedDate"] == filelastmodified:
         time.sleep(0.5)
         continue
     else:
         cls()
-    chatfileforread.GetContentFile("chatlogsforread.txt")
+    chatlogs.GetContentFile("chatlogsforread.txt")
     displayingchat = open("chatlogsforread.txt", "r")
     getlogs = displayingchat.read()
     displayingchat.close()
     getlogs = emojis.encode(getlogs)
     print(parse(getlogs))
-    filelastmodified = chatfileforread["modifiedDate"]
+    filelastmodified = chatlogs["modifiedDate"]

@@ -20,10 +20,11 @@ def cls():
 
 gauth = GoogleAuth()
 gauth.LoadCredentialsFile("mycreds.txt")
+
 if gauth.access_token_expired:
-  gauth.Refresh()
+    gauth.Refresh()
 else:
-  gauth.Authorize()
+    gauth.Authorize()
 
 gauth.SaveCredentialsFile("mycreds.txt")
 drive = GoogleDrive(gauth)
@@ -50,15 +51,15 @@ while True:
            else:
                filepath = reply[1:-1]
            try:
-               output = climage.convert(filepath, is_unicode=False)
+               output = climage.convert(filepath, is_unicode=True, is_truecolor=True, is_256color=False)
                if "|" in reply:
                    reply = output + caption
                else:
                    reply = output
            except (FileNotFoundError, UnidentifiedImageError, PermissionError, OSError):
                pass
-       newmessage = "	|" + replymessage
-       newmessage = newmessage + "\n" + "	|" + "\n" + reply
+       newmessage = "<dim>	|" + replymessage + "</dim>"
+       newmessage = newmessage + "\n" + "<dim>	|</dim>" + "\n" + reply
        replyornot = True
    if len(newmessage) > 2 and newmessage[0] and newmessage[-1] == "`":
        if "|" in newmessage:
@@ -68,7 +69,7 @@ while True:
        else:
            filepath = newmessage[1:-1]
        try:
-           output = climage.convert(filepath, is_unicode=False)
+           output = climage.convert(filepath, is_unicode=True, is_truecolor=True, is_256color=False)
            if "|" in newmessage:
                newmessage = output + caption
            else:
@@ -85,8 +86,8 @@ while True:
        newmessage = userenter + ": \n" + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
    else:
        newmessage = userenter + ": " + newmessage + "        " + str(strftime("%m-%d-%Y %H:%M:%S", gmtime()) + " GMT")
-   chatfileforwrite = drive.CreateFile({"id": "1H1dmPXahBo1BcKk4djuABDom8q2ys-E4"})
-   chatfileforwrite.GetContentFile("chatlogsforwrite.txt")
+   chatlogs = drive.CreateFile({"id": "1H1dmPXahBo1BcKk4djuABDom8q2ys-E4"})
+   chatlogs.GetContentFile("chatlogsforwrite.txt")
    modifyfile = open("chatlogsforwrite.txt", "a")
    modifyfile.write(newmessage)
    if imgornot == True:
@@ -96,5 +97,6 @@ while True:
    modifyfile.close()
    modifyfile = open("chatlogsforwrite.txt", "r")
    logs = modifyfile.read()
-   chatfileforwrite.SetContentString(logs)
-   chatfileforwrite.Upload()
+   modifyfile.close()
+   chatlogs.SetContentString(logs)
+   chatlogs.Upload()
