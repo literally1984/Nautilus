@@ -50,7 +50,7 @@ An example:
 
 The output would be:
 
-<img width="309" alt="unnamed-Nautilus" src="https://user-images.githubusercontent.com/85363779/128643608-ed5c586e-8ff7-45b5-85a2-2b64a3025a56.PNG">
+<img width="309" alt="untitled-Nautilus" src="https://user-images.githubusercontent.com/85363779/128793102-e08ac61d-013c-4b9d-8af7-d1008f501bdd.PNG">
  
  The original image was:
  
