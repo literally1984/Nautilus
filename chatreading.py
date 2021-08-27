@@ -31,7 +31,7 @@ def startmessagewrite():
         if shutil.which("wt.exe") is None:
             os.system('start cmd /k "' + pythonrunner)
         else:
-            os.system("start cmd /c " + pythonrunnerwt)
+            os.system(pythonrunnerwt)
     elif platform.system() == "Darwin":
         currentdir = os.getcwd()
         cmd = "cd " + currentdir + "; " + sys.executable + " chatwriting.py"
