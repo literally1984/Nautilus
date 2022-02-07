@@ -3,11 +3,7 @@ Serverless console based chat program made with PyDrive2.
 # How To Use:
 After installing the program files from GitHub, they can be put anywhere. Just make sure to keep all files in one place.
  
-To start using Nautilus, run 'setup.py' and follow the instructions it provides. While you can run it with an IDE or something similar, I encourage you to run it with [Windows Terminal](https://github.com/microsoft/terminal#installing-and-running-windows-terminal)* (Windows) or [iTerm2](https://iterm2.com/)** (Mac). See [this link](https://www.wikihow.com/Open-a-Python-File#Using-Python-at-the-Command-Line) for help on running a Python file in Windows Terminal or iTerm2.
-
-*Previously, it was encouraged to run Nautilus with the regular Windows Command Prompt. However, with the addition of emoji support in release 2.1.0, Command Prompt is now useless because it cannot display Unicode, or at least emojis.
-
-**Previously, it was encouraged to run Nautilus with the regular Mac Terminal. However, with the addition of the 'images' feature, Terminal simply does not work because the 'images' feature needs truecolor support.
+To start using Nautilus, run 'setup.py' and follow the instructions it provides. While you can run it with an IDE or something similar, I encourage you to run it with [Windows Terminal](https://github.com/microsoft/terminal#installing-and-running-windows-terminal) (Windows) or [iTerm2](https://iterm2.com/) (Mac). See [this link](https://www.wikihow.com/Open-a-Python-File#Using-Python-at-the-Command-Line) for help on running a Python file in Windows Terminal or iTerm2.
 
 # Emojis
 See [this file](https://github.com/literally1984/Nautilus/blob/main/emojis.md) for a complete list of all emojis supported by Nautilus.
