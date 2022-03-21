@@ -1,3 +1,8 @@
+# This project has been, for now, abandoned, and will not work. I may resume work on this project, but I'll probably need some help.
+
+
+
+
 # Nautilus
 Serverless console based chat program made with PyDrive2.
 # How To Use:
